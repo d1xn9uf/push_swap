@@ -29,7 +29,6 @@ int	main(int ac, char **av)
 	exec_moves(&stack_a, &stack_b);
 	check_order(&stack_a, &stack_b);
 	free_stack(&stack_a);
-	free_stack(&stack_b);
 	write(STDOUT_FILENO, "OK\n", 3);
 	exit(EXIT_SUCCESS);
 }
