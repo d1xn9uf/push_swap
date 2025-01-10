@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:10:14 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/08 07:32:10 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/10 09:10:09 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ typedef struct s_buff
 	struct s_buff	*next;
 }				t_buff;
 
+typedef struct s_move
+{
+	char			*inst;
+	struct s_move	*next;
+}				t_move;
+
 /* gnl.c */
 char	*get_next_line(int fd);
 
@@ -35,8 +41,12 @@ void	link_check_buff(t_buff *p_plus, t_buff *p_buff);
 char	*return_line(t_buff *p_plus);
 void	free_buff(t_buff *p_plus);
 
+/* check.c */
+void	free_moves(t_move *head);
+void	exit_KO(void);
+
 /* check_utils.c */
-void	exec_moves(t_stack *stack_a, t_stack *stack_b);
-void	check_order(t_stack *stack_a, t_stack *stack_b);
+t_move	*read_moves(t_stack *stack_a, t_stack *stack_b);
+void	check_order(t_stack *stack_a, t_stack *stack_b, t_move *head);
 
 #endif
