@@ -16,7 +16,6 @@ static void	exec_moves(t_stack *stack_a, t_stack *stack_b, t_move *head);
 static void	exec_move(t_stack *stack_a, t_stack *stack_b, char *move);
 static int	is_valid(char *move);
 
-#include <stdio.h>
 t_move	*read_moves(t_stack *stack_a, t_stack *stack_b)
 {
 	t_move	*head;
