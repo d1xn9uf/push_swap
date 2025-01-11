@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:10:09 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/08 08:00:58 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/11 22:01:48 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef struct s_stack
 }				t_stack;
 
 /* format.c */
-void	format(int ac, char **av, t_stack *stack);
+void	format(int ac, char **av, t_stack *stack, int heap);
+void	format_one(char *args, t_stack *stack);
 
 /* format_utils.c */
 void	free_stack(t_stack *stack);
@@ -43,8 +44,8 @@ void	fill_ranks(t_stack *stack);
 int		rank_index(t_stack *stack, int rank);
 
 /* format_checks.c */
-void	check_arg(char *arg, t_stack *stack);
-void	check_duplicate(t_stack *stack);
+void	check_arg(char **av, int i, t_stack *stack, int heap);
+void	check_duplicate(t_stack *stack, char **av, int heap);
 
 /* move_swap.c */
 void	swap_a(t_stack *stack_a, int p);

@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:36:46 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/06 23:09:14 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/11 21:54:29 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_atoi(const char *nptr);
 char	*ft_itoa(int n);
+char	**ft_split(char const *s, char c);
+void	free_all(char **splits);
 
 #endif

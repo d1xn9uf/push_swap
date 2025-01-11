@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   check_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:07:55 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/10 09:29:04 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/11 21:58:33 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "check.h"
+#include "check_bonus.h"
 
 int	main(int ac, char **av)
 {
@@ -23,7 +23,10 @@ int	main(int ac, char **av)
 	stack_a.head = NULL;
 	stack_a.size = 0;
 	stack_a.lis = NULL;
-	format(ac, av, &stack_a);
+	if (ac == 2)
+		format_one(av[1], &stack_a);
+	else
+		format(ac, av, &stack_a, 0);
 	stack_b.head = NULL;
 	stack_b.size = 0;
 	stack_b.lis = NULL;
@@ -48,7 +51,7 @@ void	free_moves(t_move *head)
 	}
 }
 
-void	exit_KO(void)
+void	exit_ko(void)
 {
 	write(STDOUT_FILENO, "KO\n", 3);
 	exit(EXIT_FAILURE);

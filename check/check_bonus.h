@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.h                                            :+:      :+:    :+:   */
+/*   check_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:10:14 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/10 09:10:09 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/11 21:30:45 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_H
-# define CHECK_H
+#ifndef CHECK_BONUS_H
+# define CHECK_BONUS_H
 
 # include "../sort/sort.h"
 
@@ -41,11 +41,11 @@ void	link_check_buff(t_buff *p_plus, t_buff *p_buff);
 char	*return_line(t_buff *p_plus);
 void	free_buff(t_buff *p_plus);
 
-/* check.c */
+/* check_bonus.c */
 void	free_moves(t_move *head);
-void	exit_KO(void);
+void	exit_ko(void);
 
-/* check_utils.c */
+/* check_utils_bonus.c */
 t_move	*read_moves(t_stack *stack_a, t_stack *stack_b);
 void	check_order(t_stack *stack_a, t_stack *stack_b, t_move *head);
 

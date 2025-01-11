@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_utils.c                                      :+:      :+:    :+:   */
+/*   check_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 07:32:18 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/10 09:29:54 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/11 21:25:50 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "check.h"
+#include "check_bonus.h"
 
 static void	exec_moves(t_stack *stack_a, t_stack *stack_b, t_move *head);
 static void	exec_move(t_stack *stack_a, t_stack *stack_b, char *move);
@@ -50,7 +50,7 @@ void	check_order(t_stack *stack_a, t_stack *stack_b, t_move *head)
 	{
 		free_stack(stack_a);
 		free_stack(stack_b);
-		exit_KO();
+		exit_ko();
 	}
 	i = 0;
 	while (i < stack_a->size)
@@ -61,7 +61,7 @@ void	check_order(t_stack *stack_a, t_stack *stack_b, t_move *head)
 			if (get_node(stack_a, i)->value > get_node(stack_a, j)->value)
 			{
 				free_stack(stack_a);
-				exit_KO();
+				exit_ko();
 			}
 			j += 1;
 		}

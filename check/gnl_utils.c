@@ -6,11 +6,11 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:40:47 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/08 04:42:57 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/11 21:25:55 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "check.h"
+#include "check_bonus.h"
 
 void	link_check_buff(t_buff *p_plus, t_buff *p_buff)
 {

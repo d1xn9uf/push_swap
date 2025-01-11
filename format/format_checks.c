@@ -6,53 +6,55 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 22:58:33 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/08 04:39:48 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/11 22:05:09 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "format.h"
 
-void	check_arg(char *arg, t_stack *stack)
+void	check_arg(char **av, int i, t_stack *stack, int heap)
 {
 	char	*checker;
 	int		invalid;
 
-	checker = ft_itoa(ft_atoi(arg));
-	invalid = ft_strncmp(checker, arg, ft_strlen(arg));
+	checker = ft_itoa(ft_atoi(av[i]));
+	invalid = ft_strncmp(checker, av[i], ft_strlen(av[i]));
 	free(checker);
-	if (invalid || !ft_strlen(arg))
+	if (invalid || !ft_strlen(av[i]))
 	{
+		if (heap)
+			free_all(av);
 		free_stack(stack);
 		write(STDERR_FILENO, "Error\n", 6);
 		exit(EXIT_FAILURE);
 	}
 }
 
-void	check_duplicate(t_stack *stack)
+void	check_duplicate(t_stack *stack, char **av, int heap)
 {
-	int		i;
-	t_node	*node_i;
-	int		j;
-	t_node	*node_j;
+	int		i[2];
+	t_node	*node[2];
 
-	i = 0;
-	node_i = stack->head;
-	while (i < stack->size)
+	i[0] = 0;
+	node[0] = stack->head;
+	while (i[0] < stack->size)
 	{
-		j = i + 1;
-		node_j = get_node(stack, j);
-		while (j < stack->size)
+		i[1] = i[0] + 1;
+		node[1] = get_node(stack, i[1]);
+		while (i[1] < stack->size)
 		{
-			if (node_i->value == node_j->value)
+			if (node[0]->value == node[1]->value)
 			{
+				if (heap)
+					free_all(av);
 				free_stack(stack);
 				write(STDERR_FILENO, "Error\n", 6);
 				exit(EXIT_FAILURE);
 			}
-			j += 1;
-			node_j = node_j->next;
+			i[1] += 1;
+			node[1] = node[1]->next;
 		}
-		i += 1;
-		node_i = node_i->next;
+		i[0] += 1;
+		node[0] = node[0]->next;
 	}
 }
