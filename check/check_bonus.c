@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 23:07:55 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/11 21:58:33 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/18 15:36:34 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 	stack_b.head = NULL;
 	stack_b.size = 0;
 	stack_b.lis = NULL;
-	moves = read_moves(&stack_a, &stack_b);
+	moves = read_moves(&stack_a);
 	check_order(&stack_a, &stack_b, moves);
 	free_stack(&stack_a);
 	write(STDOUT_FILENO, "OK\n", 3);
@@ -54,5 +54,11 @@ void	free_moves(t_move *head)
 void	exit_ko(void)
 {
 	write(STDOUT_FILENO, "KO\n", 3);
+	exit(EXIT_FAILURE);
+}
+
+void	exit_err(void)
+{
+	write(STDERR_FILENO, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }

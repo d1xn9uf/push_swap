@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:10:09 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/11 22:01:48 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/18 15:09:54 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef struct s_node
 	int				value;
 	int				rank;
 	int				cost;
-	/* sa sb ss pa pb ra rb rr rra rrb rrr */
 	int				moves[11];
 	struct s_node	*next;
 }				t_node;

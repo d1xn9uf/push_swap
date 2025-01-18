@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 21:14:57 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/11 22:09:47 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/15 08:34:33 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	format_one(char *args, t_stack *stack)
 	int		ac;
 	char	**av;
 
+	if (!ft_strlen(args))
+	{
+		write(STDERR_FILENO, "Error\n", 6);
+		exit(EXIT_FAILURE);
+	}
 	av = ft_split(args, ' ');
 	if (!av)
 		exit(EXIT_FAILURE);

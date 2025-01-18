@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 07:32:18 by mzary             #+#    #+#             */
-/*   Updated: 2025/01/11 21:25:50 by mzary            ###   ########.fr       */
+/*   Updated: 2025/01/18 15:35:14 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	exec_moves(t_stack *stack_a, t_stack *stack_b, t_move *head);
 static void	exec_move(t_stack *stack_a, t_stack *stack_b, char *move);
-static int	is_valid(char *move);
+static int	check_instruction(t_move *move, t_stack *stack_a, t_move *head);
 
-t_move	*read_moves(t_stack *stack_a, t_stack *stack_b)
+t_move	*read_moves(t_stack *stack_a)
 {
 	t_move	*head;
 	t_move	*move;
@@ -34,7 +34,11 @@ t_move	*read_moves(t_stack *stack_a, t_stack *stack_b)
 		if (!move->inst)
 			move->next = NULL;
 		else
+		{
+			if (check_instruction(move, stack_a, head) == -1)
+				exit_err();
 			move->next = (t_move *)malloc(sizeof(t_move));
+		}
 		move = move->next;
 	}
 	return (head);
@@ -76,14 +80,6 @@ static void	exec_moves(t_stack *stack_a, t_stack *stack_b, t_move *head)
 	move = head;
 	while (move->inst)
 	{
-		if (!is_valid(head->inst))
-		{
-			free_stack(stack_a);
-			free_stack(stack_b);
-			free_moves(head);
-			write(STDERR_FILENO, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
 		exec_move(stack_a, stack_b, move->inst);
 		move = move->next;
 	}
@@ -116,21 +112,27 @@ static void	exec_move(t_stack *stack_a, t_stack *stack_b, char *move)
 		rrotate_both(stack_a, stack_b, 0);
 }
 
-static int	is_valid(char *move)
+static int	check_instruction(t_move *move, t_stack *stack_a, t_move *head)
 {
-	if (!ft_strncmp(move, "sa\n", 3) || !ft_strncmp(move, "sb\n", 3))
-		return (1);
-	if (!ft_strncmp(move, "pa\n", 3) || !ft_strncmp(move, "pb\n", 3))
-		return (1);
-	if (!ft_strncmp(move, "ra\n", 3) || !ft_strncmp(move, "rb\n", 3))
-		return (1);
-	if (!ft_strncmp(move, "rra\n", 4) || !ft_strncmp(move, "rrb\n", 4))
-		return (1);
-	if (!ft_strncmp(move, "ss\n", 3))
-		return (1);
-	if (!ft_strncmp(move, "rr\n", 3))
-		return (1);
-	if (!ft_strncmp(move, "rrr\n", 4))
-		return (1);
-	return (0);
+	char	*inst;
+	int		len;
+
+	inst = move->inst;
+	len = ft_strlen(inst);
+	if (!ft_strncmp(inst, "sa\n", len) || !ft_strncmp(inst, "sb\n", len))
+		return (0);
+	else if (!ft_strncmp(inst, "pa\n", len) || !ft_strncmp(inst, "pb\n", len))
+		return (0);
+	else if (!ft_strncmp(inst, "ra\n", len) || !ft_strncmp(inst, "rb\n", len))
+		return (0);
+	else if (!ft_strncmp(inst, "rra\n", len) || !ft_strncmp(inst, "rrb\n", len))
+		return (0);
+	else if (!ft_strncmp(inst, "ss\n", len) || !ft_strncmp(inst, "rr\n", len))
+		return (0);
+	else if (!ft_strncmp(inst, "rrr\n", len))
+		return (0);
+	free_stack(stack_a);
+	move->next = NULL;
+	free_moves(head);
+	return (-1);
 }
